@@ -119,7 +119,7 @@ void write(int m)  /*保存函数*/
 {
 	int i;
 	FILE*fp; //声明fp是指针，用来指向FILE类型的对象
-	if ((fp=fopen("employee_list","wb"))==NULL)  //创建文件并判断是否能打开
+	if ((fp=fopen("e:\\gz.dat","wb"))==NULL)  //创建文件并判断是否能打开
 	{
 		printf ("打开失败\n");
 		exit(0);
@@ -135,10 +135,11 @@ int read()  /*读取函数*/
 {
 	FILE*fp;
 	int i=0;
-	if((fp=fopen("gz.dat","rb"))==NULL)
+	if((fp=fopen("e:\\gz.dat","rb"))==NULL)
 	{
-		printf ("cannot open file\n");
+		printf ("不能打开\n");
 		exit(0);
+		getchar();system("cls");
 	}
 	else 
 	{
@@ -164,8 +165,9 @@ void find() /*查询函数*/
 	for(i=0;i<m;i++)
 		if(strcmp(em[i].gonghao,gonghao)==0)
 		{
-			printf("\n工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t绩效工资\t应发工资\t个人所得税\t实发工资\n");
-			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);
+			printf("\n工号 姓名 岗位工资 薪级工资 职务津贴 绩效工资 应发工资 个人所得税 实发工资\n");
+			printf("\n%s %s %f %f %f %f %f %f %f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);
+			system("pause");
 		}
 		if(i==m)
 			printf("\n查无此人\n");
@@ -177,10 +179,10 @@ void list()  /*浏览函数*/
 	int i;
 	int m=read();
 	system("cls");
-	printf("\n工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t绩效工资\t应发工资\t个人所得税\t实发工资\n");
+	printf("\n工号 姓名 岗位工资 薪级工资 职务津贴 绩效工资 应发工资 个人所得税 实发工资\n");
 	for(i=0;i<m;i++) /*m为输入部分的职工人数*/
-		printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa); 
-	
+		printf("\n%s %s %f %f %f %f %f %f %f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa); 
+	system("pause");
 	printf("返回主菜单\n");
 	getchar();system("cls");
 }
