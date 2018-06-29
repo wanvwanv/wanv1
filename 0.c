@@ -8,15 +8,15 @@
 
 struct employee
 {
-char gonghao[10];
-char name[10];
-float gangwei;
-float xinji;
-float zhiwu;
-float jixiao;
-float yingfa;
-float sui;
-float shifa;
+	char gonghao[10];
+	char name[10];
+	float gangwei;
+	float xinji;
+	float zhiwu;
+	float jixiao;
+	float yingfa;
+	float sui;
+	float shifa;
 }em[100];
 
 void menu();
@@ -26,359 +26,360 @@ void list();
 void del();
 void find();
 void modify();
-float grsds();  /*å®šä¹‰å„å‡½æ•°*/
+float grsds(float);  /*¶¨Òå¸÷º¯Êı*/
 
-void menu()   /*èœå•å‡½æ•°*/
+void menu()   /*²Ëµ¥º¯Êı*/
 {
-    system("cls");//æ¸…å±
-    system("color 1E"); //è®¾ç½®æ–‡å­—é¢œè‰²ä¸ºé»„è‰² èƒŒæ™¯è‰²è“è‰²
+    system("cls");//ÇåÆÁ
     printf("\n");
-    printf("èŒå·¥å·¥èµ„ç®¡ç†ç³»ç»Ÿ\n");
-    printf("1.æŸ¥è¯¢èŒå·¥ä¿¡æ¯\n");
-    printf("2.ä¿®æ”¹èŒå·¥ä¿¡æ¯\n");
-    printf("3.æµè§ˆèŒå·¥ä¿¡æ¯\n");
-    printf("4.åˆ é™¤èŒå·¥ä¿¡æ¯\n");
-    printf("5.ä¿å­˜èŒå·¥ä¿¡æ¯\n");
-    printf("6.æµè§ˆèŒå·¥ä¿¡æ¯\n");
-    printf("7.é€€å‡º\n");
+    printf("Ö°¹¤¹¤×Ê¹ÜÀíÏµÍ³\n");
+    printf("1.²éÑ¯Ö°¹¤ĞÅÏ¢\n");
+    printf("2.ĞŞ¸ÄÖ°¹¤ĞÅÏ¢\n");
+    printf("3.Ìí¼ÓÖ°¹¤ĞÅÏ¢\n");
+    printf("4.É¾³ıÖ°¹¤ĞÅÏ¢\n");
+    printf("5.±£´æÖ°¹¤ĞÅÏ¢\n");
+    printf("6.ä¯ÀÀÖ°¹¤ĞÅÏ¢\n");
+    printf("7.ÍË³ö\n");
     printf("\n");
     
 }
 
-void add()   /*å½•å…¥å‡½æ•°*/
+void main()
 {
-   int i,m;
-   system("cls");
-   printf("è¯·è¾“å…¥éœ€è¦åˆ›å»ºä¿¡æ¯çš„èŒå·¥äººæ•°(1--100):\n");
-   scanf("%d",&m);
-
-   for (i=0;i<m;i++)
-   {
-  printf("è¯·è¾“å…¥å·¥å·ï¼š");
-  scanf("%s",&em[i].gonghao);
-  printf("è¯·è¾“å…¥å§“åï¼š");
-  scanf("%s",em[i].name);
-  printf("è¯·è¾“å…¥å²—ä½å·¥èµ„ï¼š");
-  scanf("%f",&em[i].gangwei);
-  printf("è¯·è¾“å…¥è–ªçº§å·¥èµ„ï¼š");
-  scanf("%f",&em[i].xinji);
-  printf("è¯·è¾“å…¥èŒåŠ¡æ´¥è´´ï¼š");
-  scanf("%f",&em[i].zhiwu);
-  printf("è¯·è¾“å…¥ç»©æ•ˆå·¥èµ„ï¼š");
-  scanf("%f",&em[i].jixiao);
-  grsds(); //è®¡ç®—ç¨å’Œå®å‘å·¥èµ„
-  printf("\n");
-   }
-  printf("\nåˆ›å»ºå®Œæ¯•!\n");system("cls");
-  write(m); //ä¿å­˜èŒå·¥äººæ•°m
-  getchar();system("cls");
+	int n,flag;
+	while(1)
+	{ 
+		
+		do
+		{
+			menu(); /*µ÷ÓÃ²Ëµ¥º¯Êı*/
+			printf("ÇëÑ¡ÔñÄãÒªÖ´ĞĞµÄ²Ù×÷(1-7):\n");
+			scanf("%d",&n);
+			if(n>=1&&n<=7)
+			{
+				flag=1;
+				break;
+			}
+			else
+			{
+				flag=0;
+				printf("Ã»ÓĞÕâ¸öÑ¡Ïî");
+			}
+		}while(flag==0);
+		switch(n)
+		{
+		case 1:printf("²éÑ¯Ö°¹¤ĞÅÏ¢\n");printf("\n");system("cls");find();break;
+		case 2:printf("ĞŞ¸ÄÖ°¹¤ĞÅÏ¢\n");printf("\n");system("cls");modify();break;
+		case 3:printf("Ìí¼ÓÖ°¹¤ĞÅÏ¢\n");printf("\n");system("cls");add();break; 
+		case 4:printf("É¾³ıÖ°¹¤ĞÅÏ¢\n");printf("\n");system("cls");del();break;
+		case 5:printf("±£´æÖ°¹¤ĞÅÏ¢\n");printf("\n");system("cls");write(0);break;
+		case 6:printf("ä¯ÀÀÖ°¹¤ĞÅÏ¢\n");printf("\n");system("cls");list();break;
+		case 7:goto la;
+		default :break;
+		}
+		
+	}
+la:
+	system("cls");   
+	printf("ÒÑ³É¹¦ÍË³ö\n");
 }
 
-void write(int m)  /*ä¿å­˜å‡½æ•°*/
+void add()   /*Â¼Èëº¯Êı*/
 {
-   int i;
-   FILE*fp; //å£°æ˜fpæ˜¯æŒ‡é’ˆï¼Œç”¨æ¥æŒ‡å‘FILEç±»å‹çš„å¯¹è±¡
-   if ((fp=fopen("employee_list","wb"))==NULL)  //åˆ›å»ºæ–‡ä»¶å¹¶åˆ¤æ–­æ˜¯å¦èƒ½æ‰“å¼€
-   {
-     printf ("æ‰“å¼€å¤±è´¥\n");
-     exit(0);
-   }
-
-   for (i=0;i<m;i++) //å†…å­˜ä¸­èŒå·¥çš„ä¿¡æ¯è¾“å‡ºåˆ°ç£ç›˜æ–‡ä»¶ä¸­å»
-   if (fwrite(&em,sizeof(struct employee),1,fp)!=1)
-   printf("æ–‡ä»¶è¯»å†™é”™è¯¯\n");
-   fclose(fp);// ç¼“å†²åŒºå†…æœ€åå‰©ä½™çš„æ•°æ®è¾“å‡ºåˆ°ç£ç›˜æ–‡ä»¶ä¸­ï¼Œå¹¶é‡Šæ”¾æ–‡ä»¶æŒ‡é’ˆå’Œæœ‰å…³çš„ç¼“å†²åŒº
+	int i,m;
+	system("cls");
+	printf("ÇëÊäÈëĞèÒª´´½¨ĞÅÏ¢µÄÖ°¹¤ÈËÊı(1--100):\n");
+	scanf("%d",&m);
+	
+	for (i=0;i<m;i++)
+	{
+		printf("ÇëÊäÈë¹¤ºÅ£º");
+		scanf("%s",&em[i].gonghao);
+		printf("ÇëÊäÈëĞÕÃû£º");
+		scanf("%s",em[i].name);
+		printf("ÇëÊäÈë¸ÚÎ»¹¤×Ê£º");
+		scanf("%f",&em[i].gangwei);
+		printf("ÇëÊäÈëĞ½¼¶¹¤×Ê£º");
+		scanf("%f",&em[i].xinji);
+		printf("ÇëÊäÈëÖ°Îñ½òÌù£º");
+		scanf("%f",&em[i].zhiwu);
+		printf("ÇëÊäÈë¼¨Ğ§¹¤×Ê£º");
+		scanf("%f",&em[i].jixiao);
+		em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+		em[i].sui=grsds(em[i].yingfa);
+		em[i].shifa=em[i].yingfa-em[i].sui;
+		printf("\n");
+		write(m); //±£´æÖ°¹¤ÈËÊım
+	}
+	printf("\n´´½¨Íê±Ï!\n");
+	getchar();system("cls");
 }
 
-int read()  /*è¯»å–å‡½æ•°*/
+void write(int m)  /*±£´æº¯Êı*/
 {
-     FILE*fp;
-     int i=0;
-     if((fp=fopen("gz.dat","rb"))==NULL)
-         {
-           printf ("cannot open file\n");
-           exit(0);
-         }
-else 
-{
-  do 
-  {
-        fread(&em[i],sizeof(struct employee),1,fp);
-        i++;
-  }
-  while(feof(fp)==0);
+	int i;
+	FILE*fp; //ÉùÃ÷fpÊÇÖ¸Õë£¬ÓÃÀ´Ö¸ÏòFILEÀàĞÍµÄ¶ÔÏó
+	if ((fp=fopen("employee_list","wb"))==NULL)  //´´½¨ÎÄ¼ş²¢ÅĞ¶ÏÊÇ·ñÄÜ´ò¿ª
+	{
+		printf ("´ò¿ªÊ§°Ü\n");
+		exit(0);
+	}
+	
+	for (i=0;i<m;i++) //ÄÚ´æÖĞÖ°¹¤µÄĞÅÏ¢Êä³öµ½´ÅÅÌÎÄ¼şÖĞÈ¥
+		if (fwrite(&em,sizeof(struct employee),1,fp)!=1)
+			printf("ÎÄ¼ş¶ÁĞ´´íÎó\n");
+		fclose(fp);// »º³åÇøÄÚ×îºóÊ£ÓàµÄÊı¾İÊä³öµ½´ÅÅÌÎÄ¼şÖĞ£¬²¢ÊÍ·ÅÎÄ¼şÖ¸ÕëºÍÓĞ¹ØµÄ»º³åÇø
 }
 
-fclose(fp);
-return(i-1);
-}
-  
-void find() /*æŸ¥è¯¢å‡½æ•°*/
+int read()  /*¶ÁÈ¡º¯Êı*/
 {
-  char gonghao[10];
-  int i;
-  int m=read();
-  printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„å·¥å·:\n");
-  scanf("%s",gonghao);
-  for(i=0;i<m;i++)
-    if(strcmp(em[i].gonghao,gonghao)==0)
-{
-    printf("\nå·¥å·\tå§“å\tå²—ä½å·¥èµ„\tè–ªçº§å·¥èµ„\tèŒåŠ¡æ´¥è´´\tç»©æ•ˆå·¥èµ„\tåº”å‘å·¥èµ„\tä¸ªäººæ‰€å¾—ç¨\tå®å‘å·¥èµ„\n");
-    printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);
-}
-   if(i==m)
-   printf("\næŸ¥æ— æ­¤äºº\n");
-   printf("\n");
+	FILE*fp;
+	int i=0;
+	if((fp=fopen("gz.dat","rb"))==NULL)
+	{
+		printf ("cannot open file\n");
+		exit(0);
+	}
+	else 
+	{
+		do 
+		{
+			fread(&em[i],sizeof(struct employee),1,fp);
+			i++;
+		}
+		while(feof(fp)==0);
+	}
+	
+	fclose(fp);
+	return(i-1);
 }
 
-void list()  /*æµè§ˆå‡½æ•°*/
-{
-int i;
-int m=read();
-system("cls");
-printf("\nå·¥å·\tå§“å\tå²—ä½å·¥èµ„\tè–ªçº§å·¥èµ„\tèŒåŠ¡æ´¥è´´\tç»©æ•ˆå·¥èµ„\tåº”å‘å·¥èµ„\tä¸ªäººæ‰€å¾—ç¨\tå®å‘å·¥èµ„\n");
-for(i=0;i<m;i++) /*mä¸ºè¾“å…¥éƒ¨åˆ†çš„èŒå·¥äººæ•°*/
-printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa); 
-
-printf("è¿”å›ä¸»èœå•\n");
-getchar();system("cls");
+void find() /*²éÑ¯º¯Êı*/
+{	
+	char gonghao[10];
+	int i;
+	int m=read();
+	printf("ÇëÊäÈëÒª²éÕÒµÄ¹¤ºÅ:\n");
+	scanf("%s",gonghao);
+	for(i=0;i<m;i++)
+		if(strcmp(em[i].gonghao,gonghao)==0)
+		{
+			printf("\n¹¤ºÅ\tĞÕÃû\t¸ÚÎ»¹¤×Ê\tĞ½¼¶¹¤×Ê\tÖ°Îñ½òÌù\t¼¨Ğ§¹¤×Ê\tÓ¦·¢¹¤×Ê\t¸öÈËËùµÃË°\tÊµ·¢¹¤×Ê\n");
+			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);
+		}
+		if(i==m)
+			printf("\n²éÎŞ´ËÈË\n");
+		printf("\n");
 }
- 
- 
-void del()   /*åˆ é™¤å‡½æ•°*/
+
+void list()  /*ä¯ÀÀº¯Êı*/
 {
-  
-int m=read();
-int i,j,n,t,flag;
-char gonghao[10];
-printf("\nåŸæ¥çš„èŒå·¥ä¿¡æ¯:\n");
-    list();   /* è°ƒç”¨æµè§ˆå‡½æ•°*/
+	int i;
+	int m=read();
+	system("cls");
+	printf("\n¹¤ºÅ\tĞÕÃû\t¸ÚÎ»¹¤×Ê\tĞ½¼¶¹¤×Ê\tÖ°Îñ½òÌù\t¼¨Ğ§¹¤×Ê\tÓ¦·¢¹¤×Ê\t¸öÈËËùµÃË°\tÊµ·¢¹¤×Ê\n");
+	for(i=0;i<m;i++) /*mÎªÊäÈë²¿·ÖµÄÖ°¹¤ÈËÊı*/
+		printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa); 
+	
+	printf("·µ»ØÖ÷²Ëµ¥\n");
+	getchar();system("cls");
+}
+
+
+void del()   /*É¾³ıº¯Êı*/
+{
+	
+	int m=read();
+	int i,j,n,t,flag;
+	char gonghao[10];
+	printf("\nÔ­À´µÄÖ°¹¤ĞÅÏ¢:\n");
+    list();   /* µ÷ÓÃä¯ÀÀº¯Êı*/
     printf("\n");
-printf("è¯·è¾“å…¥è¦åˆ é™¤çš„èŒå·¥çš„å·¥å·:\n");
-scanf("%s",gonghao);
-for(flag=1,i=0;flag&&i<m;i++) //ä¸»å‡½æ•°ä¸­ç¡®å®šbutton==1æ—¶å„å‡½æ•°æ‰å¯ä»¥è¢«è°ƒç”¨
-{
-  if(strcmp(em[i].gonghao,gonghao)==0)
-  {
-   printf("\næ­¤äººåŸå§‹è®°å½•ä¸º:\n");
-       printf("\nå·¥å·\tå§“å\tå²—ä½å·¥èµ„\tè–ªçº§å·¥èµ„\tèŒåŠ¡æ´¥è´´\tç»©æ•ˆå·¥èµ„\tåº”å‘å·¥èµ„\tä¸ªäººæ‰€å¾—ç¨\tå®å‘å·¥èµ„\n");
-   printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
-       printf("\n 1ç¡®å®šåˆ é™¤ 0ä¸åˆ é™¤\n");
-   scanf("%d",&n);
-            if(n==1)   /*å¦‚æœåˆ é™¤ï¼Œåˆ™å…¶ä»–çš„ä¿¡æ¯éƒ½å¾€ä¸Šç§»ä¸€è¡Œ*/
-     {
-     for(j=i;j<m-1;j++)
-        {
-          em[j]=em[j+1];
-        }
-      flag=0;
-     }
-  }
-}
-if(!flag)
-    m=m-1;
-else
-    printf("\nå¯¹ä¸èµ·ï¼ŒæŸ¥æ— æ­¤äºº!\n");
-    printf("\nç›®å‰æ‰€æœ‰èŒå·¥ä¿¡æ¯:\n");
-    write(m);    /*è°ƒç”¨ä¿å­˜å‡½æ•°*/
-    list();     /*è°ƒç”¨æµè§ˆå‡½æ•°*/
-printf("\nç»§ç»­åˆ é™¤è¯·æŒ‰1ï¼Œä¸å†åˆ é™¤è¯·æŒ‰0\n");
-scanf("%d",&t);
-switch(t)
-{
+	printf("ÇëÊäÈëÒªÉ¾³ıµÄÖ°¹¤µÄ¹¤ºÅ:\n");
+	scanf("%s",gonghao);
+	for(flag=1,i=0;flag&&i<m;i++) //Ö÷º¯ÊıÖĞÈ·¶¨button==1Ê±¸÷º¯Êı²Å¿ÉÒÔ±»µ÷ÓÃ
+	{
+		if(strcmp(em[i].gonghao,gonghao)==0)
+		{
+			printf("\n´ËÈËÔ­Ê¼¼ÇÂ¼Îª:\n");
+			printf("\n¹¤ºÅ\tĞÕÃû\t¸ÚÎ»¹¤×Ê\tĞ½¼¶¹¤×Ê\tÖ°Îñ½òÌù\t¼¨Ğ§¹¤×Ê\tÓ¦·¢¹¤×Ê\t¸öÈËËùµÃË°\tÊµ·¢¹¤×Ê\n");
+			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
+			printf("\n 1È·¶¨É¾³ı 0²»É¾³ı\n");
+			scanf("%d",&n);
+            if(n==1)   /*Èç¹ûÉ¾³ı£¬ÔòÆäËûµÄĞÅÏ¢¶¼ÍùÉÏÒÆÒ»ĞĞ*/
+			{
+				for(j=i;j<m-1;j++)
+				{
+					em[j]=em[j+1];
+				}
+				flag=0;
+			}
+		}
+	}
+	if(!flag)
+		m=m-1;
+	else
+		printf("\n¶Ô²»Æğ£¬²éÎŞ´ËÈË!\n");
+    printf("\nÄ¿Ç°ËùÓĞÖ°¹¤ĞÅÏ¢:\n");
+    write(m);    /*µ÷ÓÃ±£´æº¯Êı*/
+    list();     /*µ÷ÓÃä¯ÀÀº¯Êı*/
+	printf("\n¼ÌĞøÉ¾³ıÇë°´1£¬²»ÔÙÉ¾³ıÇë°´0\n");
+	scanf("%d",&t);
+	switch(t)
+	{
     case 1:del();break;
     case 0:break;
     default :break;
-}
-}
- 
-
-float grsds() /*ç¨å‡½æ•°*/
-{
-int i;
-float gangwei;
-float xinji;
-float zhiwu;
-float jixiao;
-float yingfa;
-float sui;
-float shifa;
-
-em[i].yingfa=( em[i].gangwei + em[i].xinji + em[i].zhiwu + em[i].jixiao );
-
-if(em[i].yingfa<=500)
-{
-	em[i].sui=(em[i].yingfa)*0.05;
-}
-else if(em[i].yingfa>500)
-{
-	em[i].sui=(em[i].yingfa)*0.1;
-}
-else if(em[i].yingfa>2000)
-{
-	 em[i].sui=(em[i].yingfa)*0.15;
-}
-else if(em[i].yingfa>5000)
-{
-	em[i].sui=(em[i].yingfa)*0.2;
-}
-else if(em[i].yingfa>20000)
-{
-	em[i].sui=(em[i].yingfa)*0.3;
-}
-else if(em[i].yingfa>40000)
-{
-	em[i].sui=(em[i].yingfa)*0.35;
-}
-else if(em[i].yingfa>60000)
-{
-	em[i].sui=(em[i].yingfa)*0.4;
-}
-else if(em[i].yingfa>100000);
-{
-	em[i].sui=(em[i].yingfa)*0.45;
+	}
 }
 
 
-
-em[i].shifa=em[i].yingfa-em[i].sui;
-return 0;
-}
- 
- 
-void modify() /*ä¿®æ”¹å‡½æ•°*/
+float grsds(float m) /*Ë°º¯Êı*/
 {
-char gonghao[10];
-char name[10];
-float gangwei;
-float xinji;
-float zhiwu;
-float jixiao;
-float yingfa;
-float sui;
-float shifa;
-int b,c,i,n,t,flag; 
-int m=read(); /*å¯¼å…¥æ–‡ä»¶å†…çš„ä¿¡æ¯*/
-    printf("\n åŸæ¥çš„èŒå·¥ä¿¡æ¯:\n");
-    list();   /* è°ƒç”¨æµè§ˆå‡½æ•°*/
+	float sui1;
+	float tmp;
+	sui1=0;
+	
+	if(m<=500)
+	{
+		sui1=m*(float)0.05;
+	}
+	else if(m<=2000)
+	{
+		sui1=(m-500)*(float)0.1+25;
+	}
+	else if(m<=5000)
+	{
+		sui1=(m-2000)*(float)0.15+175;
+	}
+	else if(m<=20000)
+	{
+		sui1=(m-5000)*(float)0.2+625;
+	}
+	else if(m<=40000)
+	{
+		sui1=(m-20000)*(float)0.25+3625;
+	}
+	else if(m<=60000)
+	{
+		sui1=(m-40000)*(float)0.3+8625;
+	}
+	else if(m<=80000)
+	{
+		sui1=(m-60000)*(float)0.35+14625;
+	}
+	else if(m<=100000)
+	{
+		sui1=(m-80008)*(float)0.4+21625;
+	}
+	else
+	{
+		sui1=(m-100008)*(float)0.45+29625;
+	}
+	tmp=sui1;
+	return(tmp);
+}
+
+
+void modify() /*ĞŞ¸Äº¯Êı*/
+{
+	char gonghao[10];
+	char name[10];
+	float gangwei;
+	float xinji;
+	float zhiwu;
+	float jixiao;
+	int b,c,i,n,t,flag; 
+	int m=read(); /*µ¼ÈëÎÄ¼şÄÚµÄĞÅÏ¢*/
+    printf("\n Ô­À´µÄÖ°¹¤ĞÅÏ¢:\n");
+    list();   /* µ÷ÓÃä¯ÀÀº¯Êı*/
     printf("\n");
-    printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„èŒå·¥çš„å·¥å·:\n");
-scanf("%s",gonghao);
-for(flag=1,i=0;flag&&i<m;i++)
-{
-  if(strcmp(em[i].gonghao,gonghao)==0)
-  {
-   printf("\næ­¤äººè®°å½•ä¸ºï¼š\n");
-   printf("\nå·¥å·\tå§“å\tå²—ä½å·¥èµ„\tè–ªçº§å·¥èµ„\tèŒåŠ¡æ´¥è´´\tç»©æ•ˆå·¥èµ„\tåº”å‘å·¥èµ„\tä¸ªäººæ‰€å¾—ç¨\tå®å‘å·¥èµ„\n");
-   printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
-   printf("\n 1ç¡®å®šä¿®æ”¹ 0ä¸ä¿®æ”¹ \n");
-   scanf("%d",&n);
+    printf("ÇëÊäÈëÒªĞŞ¸ÄµÄÖ°¹¤µÄ¹¤ºÅ:\n");
+	scanf("%s",gonghao);
+	for(flag=1,i=0;flag&&i<m;i++)
+	{
+		if(strcmp(em[i].gonghao,gonghao)==0)
+		{
+			printf("\n´ËÈË¼ÇÂ¼Îª£º\n");
+			printf("\n¹¤ºÅ\tĞÕÃû\t¸ÚÎ»¹¤×Ê\tĞ½¼¶¹¤×Ê\tÖ°Îñ½òÌù\t¼¨Ğ§¹¤×Ê\tÓ¦·¢¹¤×Ê\t¸öÈËËùµÃË°\tÊµ·¢¹¤×Ê\n");
+			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
+			printf("\n 1È·¶¨ĞŞ¸Ä 0²»ĞŞ¸Ä \n");
+			scanf("%d",&n);
             if(n==1)
 			{
-               printf("\néœ€è¦è¿›è¡Œä¿®æ”¹çš„é€‰é¡¹\n 1.å·¥å· 2.å§“å 3.å²—ä½å·¥èµ„ 4.è–ªçº§å·¥èµ„ 5.èŒåŠ¡æ´¥è´´ 6.ç»©æ•ˆå·¥èµ„\n");  
-               printf("è¯·è¾“å…¥ä½ æƒ³ä¿®æ”¹çš„é‚£ä¸€é¡¹åºå·:\n");  
-               scanf("%d",&c);  
-               if(c>6||c<1)  
-               printf("\né€‰æ‹©é”™è¯¯ï¼Œè¯·é‡æ–°é€‰æ‹©!\n");  
-             }
-         flag=0;
-  }
+				printf("\nĞèÒª½øĞĞĞŞ¸ÄµÄÑ¡Ïî\n 1.¹¤ºÅ 2.ĞÕÃû 3.¸ÚÎ»¹¤×Ê 4.Ğ½¼¶¹¤×Ê 5.Ö°Îñ½òÌù 6.¼¨Ğ§¹¤×Ê\n");  
+				printf("ÇëÊäÈëÄãÏëĞŞ¸ÄµÄÄÇÒ»ÏîĞòºÅ:\n");  
+				scanf("%d",&c);  
+				if(c>6||c<1)  
+					printf("\nÑ¡Ôñ´íÎó£¬ÇëÖØĞÂÑ¡Ôñ!\n");  
+			}
+			flag=0;
+		}
         
-}
+	}
     if(flag==1)
-    printf("\næŸ¥æ— æ­¤äºº\n"); 
-
+		printf("\n²éÎŞ´ËÈË\n"); 
+	
     do
-		{
-           switch(c)
-           {  
-           case 1:printf("å·¥å·æ”¹ä¸º: ");
-                  scanf("%s",&gonghao);
-                  strcpy(em[i-1].gonghao,gonghao);
-                  break;  
-           case 2:printf("å§“åæ”¹ä¸º: ");
-                  scanf("%s",&name);
-                  strcpy(em[i-1].name,name); 
-                  break;  
-           case 3:printf("å²—ä½å·¥èµ„æ”¹ä¸º: ");
-                  scanf("%f",&gangwei);
-                  em[i-1].gangwei=gangwei;
-				  grsds();
-                  break;  
-           case 4:printf("è–ªçº§å·¥èµ„æ”¹ä¸º: ");
-                  scanf("%f",&xinji);
-                  em[i-1].xinji=xinji;
-				  grsds();
-                  break;  
-           case 5:printf("èŒåŠ¡æ´¥è´´æ”¹ä¸º: ");
-                  scanf("%d",&zhiwu);
-                  em[i-1].zhiwu=zhiwu;
-				  grsds();
-                  break;  
-           case 6:printf("ç»©æ•ˆå·¥èµ„æ”¹ä¸º: ");
-                  scanf("%f",&jixiao);
-				  em[i-1].jixiao=jixiao; 
-				  grsds();
-                  break;
-		   } 
-  printf("\n");
-  printf("\n 1.ç¡®å®šä¿®æ”¹ 2.é‡æ–°ä¿®æ”¹ \n"); 
-  scanf("%d",&b);
-}  
-   while(b==2);
-   grsds();
-   printf("\nä¿®æ”¹åçš„èŒå·¥ä¿¡æ¯:\n");
-   printf("\n");
-   write(m);
-   list();
-   printf("\nç»§ç»­ä¿®æ”¹è¯·æŒ‰1ï¼Œä¸å†ä¿®æ”¹è¯·æŒ‰0\n");
-   scanf("%d",&t);
-   switch(t)
-   {
+	{
+		switch(c)
+		{  
+		case 1:printf("¹¤ºÅ¸ÄÎª: ");
+			scanf("%s",&gonghao);
+			strcpy(em[i-1].gonghao,gonghao);
+			break;  
+		case 2:printf("ĞÕÃû¸ÄÎª: ");
+			scanf("%s",&name);
+			strcpy(em[i-1].name,name); 
+			break;  
+		case 3:printf("¸ÚÎ»¹¤×Ê¸ÄÎª: ");
+			scanf("%f",&gangwei);
+			em[i-1].gangwei=gangwei;
+			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+			em[i].sui=grsds(em[i].yingfa);
+			em[i].shifa=em[i].yingfa-em[i].sui;
+			break;  
+		case 4:printf("Ğ½¼¶¹¤×Ê¸ÄÎª: ");
+			scanf("%f",&xinji);
+			em[i-1].xinji=xinji;
+			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+			em[i].sui=grsds(em[i].yingfa);
+			em[i].shifa=em[i].yingfa-em[i].sui;
+			break;  
+		case 5:printf("Ö°Îñ½òÌù¸ÄÎª: ");
+			scanf("%d",&zhiwu);
+			em[i-1].zhiwu=zhiwu;
+			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+			em[i].sui=grsds(em[i].yingfa);
+			em[i].shifa=em[i].yingfa-em[i].sui;
+			break;  
+		case 6:printf("¼¨Ğ§¹¤×Ê¸ÄÎª: ");
+			scanf("%f",&jixiao);
+			em[i-1].jixiao=jixiao; 
+			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+			em[i].sui=grsds(em[i].yingfa);
+			em[i].shifa=em[i].yingfa-em[i].sui;
+			break;
+		} 
+		printf("\n");
+		printf("\n 1.È·¶¨ĞŞ¸Ä 2.ÖØĞÂĞŞ¸Ä \n"); 
+		scanf("%d",&b);
+	}  
+	while(b==2);
+	em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
+	em[i].sui=grsds(em[i].yingfa);
+	em[i].shifa=em[i].yingfa-em[i].sui;
+	printf("\nĞŞ¸ÄºóµÄÖ°¹¤ĞÅÏ¢:\n");
+	printf("\n");
+	write(m);
+	list();
+	printf("\n¼ÌĞøĞŞ¸ÄÇë°´1£¬²»ÔÙĞŞ¸ÄÇë°´0\n");
+	scanf("%d",&t);
+	switch(t)
+	{
     case 1:modify();break;
     case 0:break;
     default :break;
-   }
-}
-
-
- 
-void main()
-{
-   int n,flag;
-   char a;
-while(1)
-{ 
-do
-  {
-    menu(); /*è°ƒç”¨èœå•å‡½æ•°*/
-    printf("è¯·é€‰æ‹©ä½ è¦æ‰§è¡Œçš„æ“ä½œ(1-7):\n");
-    scanf("%d",&n);
-    if(n>=1&&n<=6)
-    {
-    flag=1;
-    break;
-    }
-    else
-    {
-     flag=0;
-     printf("æ²¡æœ‰è¿™ä¸ªé€‰é¡¹");
-    }
-}while(flag==0);
-   
-      switch(n)
-          {
-       case 1:printf("æŸ¥è¯¢èŒå·¥ä¿¡æ¯\n");printf("\n");system("cls");find();break;
-       case 2:printf("ä¿®æ”¹èŒå·¥ä¿¡æ¯\n");printf("\n");system("cls");modify();break;
-       case 3:printf("æ·»åŠ èŒå·¥ä¿¡æ¯\n");printf("\n");system("cls");add();break; 
-       case 4:printf("åˆ é™¤èŒå·¥ä¿¡æ¯\n");printf("\n");system("cls");del();break;
-	   case 5:printf("æµè§ˆèŒå·¥ä¿¡æ¯\n");printf("\n");system("cls");list();break;
-       case 6:goto la;
-       default :break;
-          }
-  
-}
-la:
-   system("cls");   
-   printf("å·²æˆåŠŸé€€å‡º\n");
+	}
+	
 }
