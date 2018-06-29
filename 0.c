@@ -6,7 +6,7 @@
 #include <math.h>
 #define N 100
 
-struct employee
+struct zggz
 {
 	char gonghao[10];
 	char name[10];
@@ -17,7 +17,7 @@ struct employee
 	float yingfa;
 	float sui;
 	float shifa;
-}em[100];
+}zggz[100];
 
 void menu();
 void add();
@@ -26,9 +26,9 @@ void list();
 void del();
 void find();
 void modify();
-float grsds(float);  /*定义各函数*/
+float grsds(float);  //定义各函数
 
-void menu()   /*菜单函数*/
+void menu()   //菜单函数
 {
     system("cls");//清屏
     printf("\n");
@@ -52,7 +52,7 @@ void main()
 		
 		do
 		{
-			menu(); /*调用菜单函数*/
+			menu(); 
 			printf("请选择你要执行的操作(1-7):\n");
 			scanf("%d",&n);
 			if(n>=1&&n<=7)
@@ -64,6 +64,7 @@ void main()
 			{
 				flag=0;
 				printf("没有这个选项");
+				system("pause");
 			}
 		}while(flag==0);
 		switch(n)
@@ -84,7 +85,7 @@ la:
 	printf("已成功退出\n");
 }
 
-void add()   /*录入函数*/
+void add()   //录入函数
 {
 	int i,m;
 	system("cls");
@@ -94,28 +95,28 @@ void add()   /*录入函数*/
 	for (i=0;i<m;i++)
 	{
 		printf("请输入工号：");
-		scanf("%s",&em[i].gonghao);
+		scanf("%s",&zggz[i].gonghao);
 		printf("请输入姓名：");
-		scanf("%s",em[i].name);
+		scanf("%s",zggz[i].name);
 		printf("请输入岗位工资：");
-		scanf("%f",&em[i].gangwei);
+		scanf("%f",&zggz[i].gangwei);
 		printf("请输入薪级工资：");
-		scanf("%f",&em[i].xinji);
+		scanf("%f",&zggz[i].xinji);
 		printf("请输入职务津贴：");
-		scanf("%f",&em[i].zhiwu);
+		scanf("%f",&zggz[i].zhiwu);
 		printf("请输入绩效工资：");
-		scanf("%f",&em[i].jixiao);
-		em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-		em[i].sui=grsds(em[i].yingfa);
-		em[i].shifa=em[i].yingfa-em[i].sui;
+		scanf("%f",&zggz[i].jixiao);
+		zggz[i].yingfa=(zggz[i].gangwei+zggz[i].xinji+zggz[i].zhiwu+zggz[i].jixiao);
+		zggz[i].sui=grsds(zggz[i].yingfa);
+		zggz[i].shifa=zggz[i].yingfa-zggz[i].sui;
 		printf("\n");
-		write(m); //保存职工人数m
+		write(m); 
 	}
 	printf("\n创建完毕!\n");
 	getchar();system("cls");
 }
 
-void write(int m)  /*保存函数*/
+void write(int m)  //保存函数
 {
 	int i;
 	FILE*fp; //声明fp是指针，用来指向FILE类型的对象
@@ -126,12 +127,12 @@ void write(int m)  /*保存函数*/
 	}
 	
 	for (i=0;i<m;i++) //内存中职工的信息输出到磁盘文件中去
-		if (fwrite(&em,sizeof(struct employee),1,fp)!=1)
+		if (fwrite(&zggz,sizeof(struct zggz),1,fp)!=1)
 			printf("文件读写错误\n");
-		fclose(fp);// 缓冲区内最后剩余的数据输出到磁盘文件中，并释放文件指针和有关的缓冲区
+		fclose(fp);//缓冲区内最后剩余的数据输出到磁盘文件中，并释放文件指针和有关的缓冲区
 }
 
-int read()  /*读取函数*/
+int read()  //读取函数
 {
 	FILE*fp;
 	int i=0;
@@ -145,7 +146,7 @@ int read()  /*读取函数*/
 	{
 		do 
 		{
-			fread(&em[i],sizeof(struct employee),1,fp);
+			fread(&zggz[i],sizeof(struct zggz),1,fp);
 			i++;
 		}
 		while(feof(fp)==0);
@@ -155,7 +156,7 @@ int read()  /*读取函数*/
 	return(i-1);
 }
 
-void find() /*查询函数*/
+void find() //查询函数
 {	
 	char gonghao[10];
 	int i;
@@ -163,56 +164,57 @@ void find() /*查询函数*/
 	printf("请输入要查找的工号:\n");
 	scanf("%s",gonghao);
 	for(i=0;i<m;i++)
-		if(strcmp(em[i].gonghao,gonghao)==0)
+		if(strcmp(zggz[i].gonghao,gonghao)==0)
 		{
 			printf("\n工号 姓名 岗位工资 薪级工资 职务津贴 绩效工资 应发工资 个人所得税 实发工资\n");
-			printf("\n%s %s %f %f %f %f %f %f %f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);
+			printf("\n%s %s %f %f %f %f %f %f %f\n",zggz[i].gonghao,zggz[i].name,zggz[i].gangwei,zggz[i].xinji,zggz[i].zhiwu,zggz[i].jixiao,zggz[i].yingfa,zggz[i].sui,zggz[i].shifa);
 			system("pause");
 		}
 		if(i==m)
 			printf("\n查无此人\n");
-		printf("\n");
+		    system("pause");
+		    printf("\n");
 }
 
-void list()  /*浏览函数*/
+void list()  //浏览函数
 {
 	int i;
 	int m=read();
 	system("cls");
 	printf("\n工号 姓名 岗位工资 薪级工资 职务津贴 绩效工资 应发工资 个人所得税 实发工资\n");
-	for(i=0;i<m;i++) /*m为输入部分的职工人数*/
-		printf("\n%s %s %f %f %f %f %f %f %f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa); 
+	for(i=0;i<m;i++)
+		printf("\n%s %s %f %f %f %f %f %f %f\n",zggz[i].gonghao,zggz[i].name,zggz[i].gangwei,zggz[i].xinji,zggz[i].zhiwu,zggz[i].jixiao,zggz[i].yingfa,zggz[i].sui,zggz[i].shifa); 
 	system("pause");
 	printf("返回主菜单\n");
 	getchar();system("cls");
 }
 
 
-void del()   /*删除函数*/
+void del()   //删除函数
 {
 	
 	int m=read();
 	int i,j,n,t,flag;
 	char gonghao[10];
 	printf("\n原来的职工信息:\n");
-    list();   /* 调用浏览函数*/
+    list();   //调用浏览函数
     printf("\n");
 	printf("请输入要删除的职工的工号:\n");
 	scanf("%s",gonghao);
-	for(flag=1,i=0;flag&&i<m;i++) //主函数中确定button==1时各函数才可以被调用
+	for(flag=1,i=0;flag&&i<m;i++) 
 	{
-		if(strcmp(em[i].gonghao,gonghao)==0)
+		if(strcmp(zggz[i].gonghao,gonghao)==0)
 		{
 			printf("\n此人原始记录为:\n");
 			printf("\n工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t绩效工资\t应发工资\t个人所得税\t实发工资\n");
-			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
+			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",zggz[i].gonghao,zggz[i].name,zggz[i].gangwei,zggz[i].xinji,zggz[i].zhiwu,zggz[i].jixiao,zggz[i].yingfa,zggz[i].sui,zggz[i].shifa);  
 			printf("\n 1确定删除 0不删除\n");
 			scanf("%d",&n);
-            if(n==1)   /*如果删除，则其他的信息都往上移一行*/
+            if(n==1)   //如果删除，则其他的信息都往上移一行
 			{
 				for(j=i;j<m-1;j++)
 				{
-					em[j]=em[j+1];
+					zggz[j]=zggz[j+1];
 				}
 				flag=0;
 			}
@@ -221,10 +223,10 @@ void del()   /*删除函数*/
 	if(!flag)
 		m=m-1;
 	else
-		printf("\n对不起，查无此人!\n");
+		printf("\n查无此人!\n");
     printf("\n目前所有职工信息:\n");
-    write(m);    /*调用保存函数*/
-    list();     /*调用浏览函数*/
+    write(m);
+    list();
 	printf("\n继续删除请按1，不再删除请按0\n");
 	scanf("%d",&t);
 	switch(t)
@@ -236,7 +238,7 @@ void del()   /*删除函数*/
 }
 
 
-float grsds(float m) /*税函数*/
+float grsds(float m) //税函数
 {
 	float sui1;
 	float tmp;
@@ -283,7 +285,7 @@ float grsds(float m) /*税函数*/
 }
 
 
-void modify() /*修改函数*/
+void modify() //修改函数
 {
 	char gonghao[10];
 	char name[10];
@@ -292,20 +294,20 @@ void modify() /*修改函数*/
 	float zhiwu;
 	float jixiao;
 	int b,c,i,n,t,flag; 
-	int m=read(); /*导入文件内的信息*/
+	int m=read(); //导入文件内的信息
     printf("\n 原来的职工信息:\n");
-    list();   /* 调用浏览函数*/
+    list();
     printf("\n");
     printf("请输入要修改的职工的工号:\n");
 	scanf("%s",gonghao);
 	for(flag=1,i=0;flag&&i<m;i++)
 	{
-		if(strcmp(em[i].gonghao,gonghao)==0)
+		if(strcmp(zggz[i].gonghao,gonghao)==0)
 		{
 			printf("\n此人记录为：\n");
 			printf("\n工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t绩效工资\t应发工资\t个人所得税\t实发工资\n");
-			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",em[i].gonghao,em[i].name,em[i].gangwei,em[i].xinji,em[i].zhiwu,em[i].jixiao,em[i].yingfa,em[i].sui,em[i].shifa);  
-			printf("\n 1确定修改 0不修改 \n");
+			printf("\n%s\t%s\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n",zggz[i].gonghao,zggz[i].name,zggz[i].gangwei,zggz[i].xinji,zggz[i].zhiwu,zggz[i].jixiao,zggz[i].yingfa,zggz[i].sui,zggz[i].shifa);  
+			printf("\n 1确定修改此人资料 0返回上层 \n");
 			scanf("%d",&n);
             if(n==1)
 			{
@@ -328,39 +330,39 @@ void modify() /*修改函数*/
 		{  
 		case 1:printf("工号改为: ");
 			scanf("%s",&gonghao);
-			strcpy(em[i-1].gonghao,gonghao);
+			strcpy(zggz[i-1].gonghao,gonghao);
 			break;  
 		case 2:printf("姓名改为: ");
 			scanf("%s",&name);
-			strcpy(em[i-1].name,name); 
+			strcpy(zggz[i-1].name,name); 
 			break;  
 		case 3:printf("岗位工资改为: ");
 			scanf("%f",&gangwei);
-			em[i-1].gangwei=gangwei;
-			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-			em[i].sui=grsds(em[i].yingfa);
-			em[i].shifa=em[i].yingfa-em[i].sui;
+			zggz[i-1].gangwei=gangwei;
+			zggz[i].yingfa=(zggz[i-1].gangwei+zggz[i].xinji+zggz[i].zhiwu+zggz[i].jixiao);
+			zggz[i].sui=grsds(zggz[i].yingfa);
+			zggz[i].shifa=zggz[i].yingfa-zggz[i].sui;
 			break;  
 		case 4:printf("薪级工资改为: ");
 			scanf("%f",&xinji);
-			em[i-1].xinji=xinji;
-			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-			em[i].sui=grsds(em[i].yingfa);
-			em[i].shifa=em[i].yingfa-em[i].sui;
+			zggz[i-1].xinji=xinji;
+			zggz[i].yingfa=(zggz[i].gangwei+zggz[i-1].xinji+zggz[i].zhiwu+zggz[i].jixiao);
+			zggz[i].sui=grsds(zggz[i].yingfa);
+			zggz[i].shifa=zggz[i].yingfa-zggz[i].sui;
 			break;  
 		case 5:printf("职务津贴改为: ");
 			scanf("%d",&zhiwu);
-			em[i-1].zhiwu=zhiwu;
-			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-			em[i].sui=grsds(em[i].yingfa);
-			em[i].shifa=em[i].yingfa-em[i].sui;
+			zggz[i-1].zhiwu=zhiwu;
+			zggz[i].yingfa=(zggz[i].gangwei+zggz[i].xinji+zggz[i-1].zhiwu+zggz[i].jixiao);
+			zggz[i].sui=grsds(zggz[i].yingfa);
+			zggz[i].shifa=zggz[i].yingfa-zggz[i].sui;
 			break;  
 		case 6:printf("绩效工资改为: ");
 			scanf("%f",&jixiao);
-			em[i-1].jixiao=jixiao; 
-			em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-			em[i].sui=grsds(em[i].yingfa);
-			em[i].shifa=em[i].yingfa-em[i].sui;
+			zggz[i-1].jixiao=jixiao; 
+			zggz[i].yingfa=(zggz[i].gangwei+zggz[i].xinji+zggz[i].zhiwu+zggz[i-1].jixiao);
+			zggz[i].sui=grsds(zggz[i].yingfa);
+			zggz[i].shifa=zggz[i].yingfa-zggz[i].sui;
 			break;
 		} 
 		printf("\n");
@@ -368,9 +370,6 @@ void modify() /*修改函数*/
 		scanf("%d",&b);
 	}  
 	while(b==2);
-	em[i].yingfa=(em[i].gangwei+em[i].xinji+em[i].zhiwu+em[i].jixiao);
-	em[i].sui=grsds(em[i].yingfa);
-	em[i].shifa=em[i].yingfa-em[i].sui;
 	printf("\n修改后的职工信息:\n");
 	printf("\n");
 	write(m);
